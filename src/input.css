@@ -1,0 +1,178 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ---------- Base ---------- */
+html { scroll-padding-top: 6.5rem; }
+body {
+  background: #000;
+  font-family: 'Inter', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+::selection { background: #ffffff; color: #000000; }
+
+a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible, select:focus-visible {
+  outline: 2px solid #ffffff;
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* ---------- Infinite carousel (generic, reusable) ---------- */
+.carousel-container {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+}
+.carousel-track {
+  display: flex;
+  width: max-content;
+  will-change: transform;
+  animation: scrollInfinite var(--carousel-duration, 40s) linear infinite;
+}
+.carousel-track.reverse { animation-direction: reverse; }
+.carousel-container:hover .carousel-track { animation-play-state: paused; }
+.carousel-item { flex: 0 0 auto; margin-right: 1.25rem; }
+@keyframes scrollInfinite {
+  from { transform: translate3d(0, 0, 0); }
+  to   { transform: translate3d(-50%, 0, 0); }
+}
+
+/* ---------- Hero tile wall (uses the carousel above, two opposite rows) ---------- */
+.tile-wall {
+  position: absolute;
+  inset: -12% -6%;
+  transform: rotate(-6deg);
+  transform-origin: center;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+.tile-wall .carousel-container { flex: 1 1 0%; min-height: 0; }
+.tile-wall .carousel-track { height: 100%; align-items: stretch; }
+.tile-wall .carousel-item { height: 100%; aspect-ratio: 16 / 9; }
+.wall-tile {
+  height: 100%;
+  width: 100%;
+  border-radius: 1.25rem;
+  border: 1px solid #222222;
+  background: linear-gradient(155deg, #161616, #050505);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+.wall-tile--photo { background-size: cover; background-position: center; }
+.wall-tile-mono {
+  position: absolute;
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: 3rem;
+  color: rgba(255, 255, 255, .08);
+}
+.wall-tile-icon { height: 2.5rem; width: 2.5rem; color: rgba(255, 255, 255, .4); }
+
+/* ---------- Wave divider (brand signature) ---------- */
+.wave-track { animation: waveScroll 20s linear infinite; }
+@keyframes waveScroll {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* ---------- Scroll cue ---------- */
+.scroll-cue { animation: floatY 2.6s ease-in-out infinite; }
+@keyframes floatY {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(8px); }
+}
+
+/* ---------- Scroll reveal ---------- */
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity .8s cubic-bezier(.16,.8,.24,1), transform .8s cubic-bezier(.16,.8,.24,1);
+}
+[data-reveal].in-view { opacity: 1; transform: translateY(0); }
+
+@media (prefers-reduced-motion: reduce) {
+  /* The hero wall is a slow, low-contrast ambient loop behind a heavy dark
+     overlay (not flashing/parallax-y), so it intentionally stays animated
+     even under reduced-motion — everything else still respects it. */
+  .wave-track, .scroll-cue { animation: none !important; }
+  [data-reveal] { opacity: 1 !important; transform: none !important; transition: none !important; }
+  html { scroll-behavior: auto !important; }
+}
+
+/* ---------- Grain overlay ---------- */
+.grain-overlay {
+  position: fixed; inset: 0;
+  pointer-events: none;
+  z-index: 70;
+  opacity: 0.035;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMDAiIGhlaWdodD0iMjAwIj4KICA8ZmlsdGVyIGlkPSJuIj4KICAgIDxmZVR1cmJ1bGVuY2UgdHlwZT0iZnJhY3RhbE5vaXNlIiBiYXNlRnJlcXVlbmN5PSIwLjkiIG51bU9jdGF2ZXM9IjIiIHN0aXRjaFRpbGVzPSJzdGl0Y2giIC8+CiAgICA8ZmVDb2xvck1hdHJpeCB0eXBlPSJtYXRyaXgiIHZhbHVlcz0iMCAwIDAgMCAxICAwIDAgMCAwIDEgIDAgMCAwIDAgMSAgMCAwIDAgMC45IDAiIC8+CiAgPC9maWx0ZXI+CiAgPHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsdGVyPSJ1cmwoI24pIiAvPgo8L3N2Zz4K");
+}
+
+/* ---------- Nav ---------- */
+.nav-link {
+  position: relative;
+  color: #AAAAAA;
+  font-size: .9rem;
+  transition: color .25s ease;
+}
+.nav-link:hover { color: #ffffff; }
+.nav-link::after {
+  content: "";
+  position: absolute; left: 0; bottom: -6px;
+  width: 0; height: 1px; background: #ffffff;
+  transition: width .25s ease;
+}
+.nav-link:hover::after { width: 100%; }
+
+/* ---------- Pills ---------- */
+.pill {
+  font-size: .66rem;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: #ffffff;
+  background: rgba(255,255,255,.08);
+  border: 1px solid rgba(255,255,255,.16);
+  padding: .32rem .68rem;
+  border-radius: 999px;
+  backdrop-filter: blur(6px);
+}
+
+/* ---------- Form ---------- */
+.field-label {
+  display: block;
+  font-size: .72rem;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: #8A8A8A;
+  margin-bottom: .55rem;
+}
+.field-input {
+  width: 100%;
+  background: #121212;
+  border: 1px solid #222222;
+  border-radius: .75rem;
+  padding: .85rem 1rem;
+  color: #ffffff;
+  font-size: .925rem;
+  transition: border-color .25s ease, background-color .25s ease;
+}
+.field-input::placeholder { color: #6E6E6E; }
+.field-input:focus { outline: none; border-color: rgba(255,255,255,.4); background: #161616; }
+
+/* ---------- Footer / social ---------- */
+.footer-link { color: #8A8A8A; transition: color .2s ease; font-size: .9rem; }
+.footer-link:hover { color: #ffffff; }
+.social-icon {
+  height: 2.75rem; width: 2.75rem;
+  display: flex; align-items: center; justify-content: center;
+  border: 1px solid #222222; border-radius: 9999px;
+  color: #AAAAAA;
+  transition: all .25s ease;
+}
+.social-icon:hover { color: #000000; background: #ffffff; border-color: #ffffff; }

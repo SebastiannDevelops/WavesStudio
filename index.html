@@ -1,0 +1,992 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Waves Studio — Roblox Game Development &amp; Acquisitions</title>
+<meta name="description" content="Waves Studio designs, operates, and acquires Roblox experiences built to hold attention. Explore our portfolio, live stats, acquisition program, and development services." />
+<meta name="theme-color" content="#000000" />
+<link rel="icon" type="image/png" href="logo.png" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+
+<!-- Compiled Tailwind output — see tailwind.config.js / src/input.css for the source -->
+<link href="./dist/output.css" rel="stylesheet" />
+</head>
+
+<body class="bg-black text-white antialiased">
+<div class="grain-overlay"></div>
+
+<!-- Skip link -->
+<a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:bg-white focus:text-black focus:px-4 focus:py-2 focus:rounded-full">Skip to content</a>
+
+<!-- ================= NAVBAR ================= -->
+<header id="top" class="fixed top-0 inset-x-0 z-50 border-b border-white/5 bg-black/60 backdrop-blur-xl">
+  <div class="max-w-8xl mx-auto px-6 lg:px-10 h-20 flex items-center justify-between">
+    <a href="#top" class="flex items-center gap-3 hover:opacity-80 transition-opacity">
+      <img src="logo.png" alt="Waves Studio Logo" class="h-7 w-auto object-contain" />
+      <span class="font-display font-semibold tracking-tight text-lg">Waves Studio</span>
+    </a>
+
+    <nav class="hidden md:flex items-center gap-10" aria-label="Primary">
+      <a href="#top" class="nav-link">Home</a>
+      <a href="#experiences" class="nav-link">Experiences</a>
+      <a href="#acquisitions" class="nav-link">Acquisitions</a>
+      <a href="#about" class="nav-link">About</a>
+      <a href="#contact" class="nav-link">Contact</a>
+    </nav>
+
+    <a href="#contact" class="hidden md:inline-flex items-center gap-2 rounded-full bg-white text-black text-sm font-semibold px-5 py-2.5 hover:scale-105 transition-transform duration-300">
+      Get in Touch
+    </a>
+
+    <button id="menuBtn" class="md:hidden text-white p-1" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu">
+      <svg id="iconOpen" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" class="h-6 w-6"><path d="M4 7h16M4 12h16M4 17h16" stroke-linecap="round" /></svg>
+      <svg id="iconClose" class="hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" class="h-6 w-6"><path d="M6 6l12 12M18 6L6 18" stroke-linecap="round" /></svg>
+    </button>
+  </div>
+
+  <div id="mobileMenu" class="md:hidden hidden flex-col border-t border-white/5 bg-black/95 backdrop-blur-xl px-6 py-6 gap-1">
+    <a href="#top" class="block py-3 text-subtle hover:text-white transition-colors">Home</a>
+    <a href="#experiences" class="block py-3 text-subtle hover:text-white transition-colors">Experiences</a>
+    <a href="#acquisitions" class="block py-3 text-subtle hover:text-white transition-colors">Acquisitions</a>
+    <a href="#about" class="block py-3 text-subtle hover:text-white transition-colors">About</a>
+    <a href="#contact" class="block py-3 text-subtle hover:text-white transition-colors">Contact</a>
+    <a href="#contact" class="mt-3 inline-flex w-fit items-center gap-2 rounded-full bg-white text-black text-sm font-semibold px-5 py-2.5">Get in Touch</a>
+  </div>
+</header>
+
+<main id="main">
+<!-- ================= HERO ================= -->
+<section id="home" class="relative min-h-[100svh] flex items-end overflow-hidden pt-32 pb-20">
+
+  <!-- Background: two rows of tilted tiles scrolling in opposite directions -->
+  <div class="absolute inset-0 overflow-hidden" aria-hidden="true">
+    <div class="tile-wall">
+      <div class="carousel-container" data-speed="22">
+        <div class="carousel-track hero-wall-track"></div>
+      </div>
+      <div class="carousel-container" data-speed="19">
+        <div class="carousel-track reverse hero-wall-track"></div>
+      </div>
+      <div class="carousel-container" data-speed="24">
+        <div class="carousel-track hero-wall-track"></div>
+      </div>
+      <div class="carousel-container" data-speed="17">
+        <div class="carousel-track reverse hero-wall-track"></div>
+      </div>
+    </div>
+  </div>
+  <div class="absolute inset-0" style="background: linear-gradient(to bottom, rgba(0,0,0,.55) 0%, rgba(0,0,0,.86) 55%, #000000 100%), radial-gradient(ellipse 70% 60% at 25% 60%, rgba(0,0,0,.45), transparent);"></div>
+
+  <div class="relative z-10 max-w-8xl mx-auto px-6 lg:px-10 w-full">
+    <p class="flex items-center gap-2 text-xs tracking-[0.25em] uppercase text-subtle font-medium mb-6 font-display" data-reveal>
+      <span class="h-1.5 w-1.5 rounded-full bg-white inline-block"></span>
+      Roblox Game Studio
+    </p>
+
+    <h1 class="font-extrabold leading-[0.98] tracking-tight text-5xl sm:text-6xl md:text-7xl lg:text-[5.25rem] max-w-4xl" data-reveal>
+      Crafting &amp; acquiring the next generation of experiences.
+    </h1>
+
+    <p class="mt-7 max-w-xl text-lg font-light text-subtle leading-relaxed" data-reveal>
+      Waves Studio designs, operates, and acquires Roblox experiences built to hold attention — and keep it. From first prototype to platform-scale live ops.
+    </p>
+
+    <div class="mt-10 flex flex-wrap items-center gap-4" data-reveal>
+      <a href="#experiences" class="inline-flex items-center gap-2 rounded-full bg-white text-black font-semibold px-7 py-3.5 text-sm hover:scale-105 transition-transform duration-300">
+        Explore Experiences <span aria-hidden="true">↗</span>
+      </a>
+      <a href="#acquisitions" class="inline-flex items-center gap-2 rounded-full border border-white/20 text-white font-medium px-7 py-3.5 text-sm hover:bg-white/5 hover:border-white/40 transition-colors duration-300">
+        Partner With Us <span aria-hidden="true">↗</span>
+      </a>
+    </div>
+
+    <!-- HERO_STATS is rendered here by the script at the bottom of the page -->
+    <div id="heroStats" class="mt-16 pt-10 border-t border-white/10 grid grid-cols-3 max-w-2xl gap-8" data-reveal></div>
+  </div>
+
+  <button id="scrollCue" class="scroll-cue hidden sm:flex absolute bottom-8 right-8 z-10 flex-col items-center gap-2 text-muted hover:text-white transition-colors" aria-label="Scroll to explore">
+    <span class="text-[10px] tracking-[0.2em] uppercase [writing-mode:vertical-rl] font-display">Scroll</span>
+    <span class="h-8 w-px bg-current"></span>
+  </button>
+</section>
+
+<!-- ================= WAVE DIVIDER ================= -->
+<div class="relative bg-black py-1 overflow-hidden" aria-hidden="true">
+  <div class="wave-track flex w-[200%]">
+    <svg class="w-1/2 h-12" viewBox="0 0 1440 60" preserveAspectRatio="none" fill="none">
+      <path d="M0,30 C120,4 240,56 360,30 C480,4 600,56 720,30 C840,4 960,56 1080,30 C1200,4 1320,56 1440,30" stroke="#FFFFFF" stroke-opacity="0.14" stroke-width="1.5" />
+    </svg>
+    <svg class="w-1/2 h-12" viewBox="0 0 1440 60" preserveAspectRatio="none" fill="none">
+      <path d="M0,30 C120,4 240,56 360,30 C480,4 600,56 720,30 C840,4 960,56 1080,30 C1200,4 1320,56 1440,30" stroke="#FFFFFF" stroke-opacity="0.14" stroke-width="1.5" />
+    </svg>
+  </div>
+</div>
+
+<!-- ================= OUR STATS (Featured Experiences + Playtime) ================= -->
+<section id="experiences" class="relative bg-black py-24 lg:py-32">
+  <div class="max-w-8xl mx-auto px-6 lg:px-10">
+
+    <!-- Top block: Featured Experiences -->
+    <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-14" data-reveal>
+      <div>
+        <p class="flex items-center gap-2 text-xs tracking-[0.25em] uppercase text-muted font-medium mb-4 font-display">
+          <span class="h-3 w-px bg-white/30 inline-block"></span> Games
+        </p>
+        <h2 class="font-extrabold text-4xl sm:text-5xl lowercase tracking-tight">featured experiences</h2>
+        <p class="mt-3 max-w-sm text-subtle font-light leading-relaxed">Our most popular games, built from the ground up.</p>
+      </div>
+      <button type="button" id="viewAllBtn" class="inline-flex items-center gap-2 rounded-full border border-white/20 text-white text-sm font-medium px-5 py-2.5 hover:bg-white/5 hover:border-white/40 transition-colors duration-300 w-fit">
+        View All <span aria-hidden="true">↗</span>
+      </button>
+    </div>
+
+    <!-- FEATURED_GAMES is rendered here by the script at the bottom of the page -->
+    <div id="gamesGrid" class="grid grid-cols-1 md:grid-cols-3 gap-6" data-reveal></div>
+
+    <!-- Bottom block: Live Activity (live CCU + real per-device peak) -->
+    <div class="mt-14 rounded-2xl border border-line bg-surface p-7 sm:p-10" data-reveal>
+      <!-- Rendered by renderLiveActivity() at the bottom of the page -->
+      <div id="playtimeChart"></div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ================= ALL GAMES MODAL =================
+     Not part of the normal page flow — no nav link or scroll position ever
+     points here. The only way in is the "View All" button above; JS toggles
+     `hidden` on/off. One card per place ID configured in worker.js's
+     GAME_PLACE_IDS, built automatically at open time. -->
+<div id="gamesModal" class="fixed inset-0 z-[90] hidden items-start justify-center overflow-y-auto p-4 sm:p-8" role="dialog" aria-modal="true" aria-labelledby="gamesModalTitle">
+  <div id="gamesModalBackdrop" class="fixed inset-0 bg-black/80 backdrop-blur-sm"></div>
+  <div class="relative w-full max-w-6xl bg-surface border border-line rounded-2xl my-8">
+    <div class="flex items-center justify-between gap-4 p-6 sm:p-8 border-b border-line sticky top-0 bg-surface rounded-t-2xl z-10">
+      <div>
+        <p class="text-xs tracking-[0.25em] uppercase text-muted font-medium mb-2 font-display">All Games</p>
+        <h2 id="gamesModalTitle" class="font-display font-semibold text-xl sm:text-2xl">Every experience, live from Roblox</h2>
+      </div>
+      <button type="button" id="gamesModalClose" aria-label="Close" class="h-10 w-10 flex-shrink-0 rounded-full border border-line flex items-center justify-center text-muted hover:text-white hover:border-white/40 transition-colors">
+        <svg viewBox="0 0 20 20" class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 5l10 10M15 5L5 15" stroke-linecap="round" /></svg>
+      </button>
+    </div>
+    <div id="gamesModalGrid" class="grid grid-cols-1 md:grid-cols-3 gap-6 p-6 sm:p-8"></div>
+  </div>
+</div>
+
+<!-- ================= ACQUISITIONS & SERVICES ================= -->
+<section id="acquisitions" class="relative bg-black py-24 lg:py-32 border-t border-line">
+  <div class="max-w-8xl mx-auto px-6 lg:px-10">
+    <div class="mb-14 max-w-2xl" data-reveal>
+      <p class="text-xs tracking-[0.25em] uppercase text-muted font-medium mb-4 font-display">What We Do</p>
+      <h2 class="font-extrabold text-4xl sm:text-5xl tracking-tight">Two disciplines. One standard of craft.</h2>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+
+      <!-- Acquisition -->
+      <div class="rounded-2xl border border-line bg-surface2 p-9 lg:p-12" data-reveal>
+        <div class="h-11 w-11 rounded-xl border border-line bg-white/5 flex items-center justify-center mb-6">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="h-5 w-5 text-white">
+            <path d="M4 12V6a1 1 0 011-1h14a1 1 0 011 1v6" stroke-linecap="round" stroke-linejoin="round" />
+            <path d="M4 12h4l1.5 2.5h5L16 12h4" stroke-linecap="round" stroke-linejoin="round" />
+            <path d="M4 12v5a1 1 0 001 1h14a1 1 0 001-1v-5" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+        </div>
+        <h3 class="font-display font-semibold text-2xl mb-4">Game Acquisition</h3>
+        <p class="text-subtle font-light leading-relaxed mb-8">We're actively expanding our portfolio. We acquire and operate existing Roblox experiences with untapped potential, giving them the resources to grow further.</p>
+        <ul class="space-y-4">
+          <li class="flex items-start gap-3">
+            <svg class="h-5 w-5 flex-shrink-0 text-white/70 mt-0.5" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 10.5l3.5 3.5L16 6" stroke-linecap="round" stroke-linejoin="round" /></svg>
+            <span class="text-sm text-subtle">Market Research</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <svg class="h-5 w-5 flex-shrink-0 text-white/70 mt-0.5" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 10.5l3.5 3.5L16 6" stroke-linecap="round" stroke-linejoin="round" /></svg>
+            <span class="text-sm text-subtle">Integration</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <svg class="h-5 w-5 flex-shrink-0 text-white/70 mt-0.5" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 10.5l3.5 3.5L16 6" stroke-linecap="round" stroke-linejoin="round" /></svg>
+            <span class="text-sm text-subtle">Safe Transfer</span>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Development -->
+      <div class="rounded-2xl border border-line bg-surface2 p-9 lg:p-12" data-reveal>
+        <div class="h-11 w-11 rounded-xl border border-line bg-white/5 flex items-center justify-center mb-6">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="h-5 w-5 text-white">
+            <path d="M9 18l-6-6 6-6M15 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+        </div>
+        <h3 class="font-display font-semibold text-2xl mb-4">Game Development</h3>
+        <p class="text-subtle font-light leading-relaxed mb-8">Our in-house team builds and refines live experiences — optimization, retention, and monetization strategy engineered for long-term scale.</p>
+        <ul class="space-y-4">
+          <li class="flex items-start gap-3">
+            <svg class="h-5 w-5 flex-shrink-0 text-white/70 mt-0.5" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 10.5l3.5 3.5L16 6" stroke-linecap="round" stroke-linejoin="round" /></svg>
+            <span class="text-sm text-subtle">Retention Systems</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <svg class="h-5 w-5 flex-shrink-0 text-white/70 mt-0.5" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 10.5l3.5 3.5L16 6" stroke-linecap="round" stroke-linejoin="round" /></svg>
+            <span class="text-sm text-subtle">Monetization Design</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <svg class="h-5 w-5 flex-shrink-0 text-white/70 mt-0.5" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 10.5l3.5 3.5L16 6" stroke-linecap="round" stroke-linejoin="round" /></svg>
+            <span class="text-sm text-subtle">Live Ops &amp; Support</span>
+          </li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ================= ABOUT US ================= -->
+<section id="about" class="relative bg-black py-24 lg:py-32 border-t border-line">
+  <div class="max-w-8xl mx-auto px-6 lg:px-10 grid grid-cols-1 lg:grid-cols-5 gap-14 lg:gap-16 items-start">
+    <div class="lg:col-span-3" data-reveal>
+      <p class="text-xs tracking-[0.25em] uppercase text-muted font-medium mb-4 font-display">About Us</p>
+      <h2 class="font-extrabold text-4xl sm:text-5xl tracking-tight mb-6 max-w-xl">Small studio. Global standard.</h2>
+      <p class="text-subtle font-light leading-relaxed max-w-xl">Founded in 2026 by Sebastian &amp; Wis., Waves Studio was built on a simple idea: Roblox experiences deserve the same craft, discipline, and long-term thinking as any other creative product. We operate lean, move fast, and hold every acquisition and every line of code to the same standard.</p>
+    </div>
+
+    <div class="lg:col-span-2 grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-1 gap-4" data-reveal>
+      <div class="rounded-2xl border border-line bg-surface2 p-6">
+        <p class="font-display text-2xl font-bold mb-1">2026</p>
+        <p class="text-sm text-muted">Founded by Sebastian &amp; Wis.</p>
+      </div>
+      <div class="rounded-2xl border border-line bg-surface2 p-6">
+        <p class="font-display text-2xl font-bold mb-1">24–48h</p>
+        <p class="text-sm text-muted">Average response time on proposals &amp; inquiries</p>
+      </div>
+      <div class="rounded-2xl border border-line bg-surface2 p-6">
+        <p class="font-display text-2xl font-bold mb-1">PST · WET</p>
+        <p class="text-sm text-muted">Time zone coverage for smooth communication</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CONTACT ================= -->
+<section id="contact" class="relative bg-black py-24 lg:py-32 border-t border-line">
+  <div class="max-w-8xl mx-auto px-6 lg:px-10 grid grid-cols-1 lg:grid-cols-5 gap-14 lg:gap-16">
+
+    <div class="lg:col-span-2" data-reveal>
+      <p class="text-xs tracking-[0.25em] uppercase text-muted font-medium mb-4 font-display">Get In Touch</p>
+      <h2 class="font-extrabold text-4xl sm:text-5xl tracking-tight mb-5">Let's build something that lasts.</h2>
+      <p class="text-subtle font-light leading-relaxed mb-10">Have a game to submit, a partnership to propose, or a project in mind? Tell us about it — we read every message.</p>
+
+      <div>
+        <p class="text-xs uppercase tracking-[0.2em] text-muted mb-4 font-display">Find Us</p>
+        <div class="flex items-center gap-4">
+          <a href="#" aria-label="Discord" class="social-icon">
+            <img src="https://static.vecteezy.com/system/resources/thumbnails/065/386/541/small/discord-white-icon-logo-app-transparent-background-premium-social-media-design-for-digital-download-free-png.png" alt="Discord" class="h-5 w-5 object-contain" />
+          </a>
+          <a href="#" aria-label="X (Twitter)" class="social-icon">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/5/57/X_logo_2023_%28white%29.png" alt="X (Twitter)" class="h-4 w-4 object-contain" />
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <form id="contactForm" class="lg:col-span-3" data-reveal novalidate>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+        <div>
+          <label for="name" class="field-label">Name</label>
+          <input id="name" name="name" type="text" required class="field-input" placeholder="Your name" />
+        </div>
+        <div>
+          <label for="email" class="field-label">Email</label>
+          <input id="email" name="email" type="email" required class="field-input" placeholder="you@studio.com" />
+        </div>
+      </div>
+
+      <div class="mt-5">
+        <label for="subject" class="field-label">Subject / Service</label>
+        <div class="relative">
+          <select id="subject" name="subject" class="field-input appearance-none pr-10">
+            <option>General Inquiry</option>
+            <option>Game Acquisition</option>
+            <option>Development Partnership</option>
+            <option>Careers</option>
+            <option>Other</option>
+          </select>
+          <svg class="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 h-4 w-4 text-muted" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 7.5l5 5 5-5" stroke-linecap="round" stroke-linejoin="round" /></svg>
+        </div>
+      </div>
+
+      <div class="mt-5">
+        <label for="message" class="field-label">Message</label>
+        <textarea id="message" name="message" rows="5" required class="field-input resize-none" placeholder="Tell us a bit about your game or idea..."></textarea>
+      </div>
+
+      <button type="submit" class="mt-7 inline-flex items-center gap-2 rounded-full bg-white text-black font-semibold px-7 py-3.5 text-sm hover:scale-105 transition-transform duration-300">
+        Send Message <span aria-hidden="true">↗</span>
+      </button>
+
+      <p id="formStatus" class="mt-4 text-sm text-subtle" role="status" aria-live="polite"></p>
+    </form>
+  </div>
+</section>
+</main>
+
+<!-- ================= FOOTER ================= -->
+<footer class="relative bg-black border-t border-line pt-16 pb-10">
+  <div class="max-w-8xl mx-auto px-6 lg:px-10">
+    <div class="flex flex-col md:flex-row md:items-start justify-between gap-10 pb-12">
+      <div class="max-w-xs">
+        <a href="#top" class="flex items-center gap-3 mb-4 hover:opacity-80 transition-opacity">
+          <img src="logo.png" alt="Waves Studio Logo" class="h-6 w-auto object-contain" />
+          <span class="font-display font-semibold">Waves Studio</span>
+        </a>
+        <p class="text-sm text-muted font-light leading-relaxed">Crafting and acquiring the next generation of Roblox experiences.</p>
+      </div>
+
+      <div class="grid grid-cols-2 sm:grid-cols-3 gap-10">
+        <div>
+          <p class="text-xs uppercase tracking-[0.2em] text-muted mb-4 font-display">Navigate</p>
+          <ul class="space-y-3">
+            <li><a href="#top" class="footer-link">Home</a></li>
+            <li><a href="#experiences" class="footer-link">Experiences</a></li>
+            <li><a href="#acquisitions" class="footer-link">Acquisitions</a></li>
+            <li><a href="#about" class="footer-link">About</a></li>
+            <li><a href="#contact" class="footer-link">Contact</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="text-xs uppercase tracking-[0.2em] text-muted mb-4 font-display">Studio</p>
+          <ul class="space-y-3">
+            <li><a href="#experiences" class="footer-link">Portfolio</a></li>
+            <li><a href="#acquisitions" class="footer-link">Partnerships</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="text-xs uppercase tracking-[0.2em] text-muted mb-4 font-display">Social</p>
+          <ul class="space-y-3">
+            <li><a href="#" class="footer-link">Discord</a></li>
+            <li><a href="#" class="footer-link">X / Twitter</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="pt-8 border-t border-line flex flex-col sm:flex-row items-center justify-between gap-4">
+      <p class="text-xs text-muted">© 2026 Waves Studio. All rights reserved.</p>
+      <p class="text-xs text-muted">Built for Roblox creators.</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* =========================================================================
+   GAMES — the ONLY place your games are defined. Add or remove a Roblox
+   place ID here; name, live CCU, visits, icon, and thumbnail are all
+   resolved automatically (see the ROBLOX DATA section below) — no backend
+   needed at all, everything fetches straight from the browser via
+   roproxy.com. Nothing else to edit or deploy.
+   ========================================================================= */
+const GAME_PLACE_IDS = [
+  126884695634, // replace with your real place IDs
+];
+
+// Populated once init() resolves; the "View All" modal reads from this
+// instead of re-fetching, since the homepage grid already loaded it.
+let ALL_GAMES = [];
+
+// Used only if roproxy is unreachable or every place ID fails to resolve,
+// so the page never renders empty.
+const FALLBACK_GAMES = [
+  { name: 'Slime Tower Tycoon', playing: 18000, visits: 42000000, peak: 24500, icon: null, thumbnails: [] },
+  { name: 'Mega Mall Tycoon',   playing: 24000, visits: 61000000, peak: 31200, icon: null, thumbnails: [] },
+  { name: 'Skyline Rush',       playing: 9000,  visits: 37000000, peak: 15800, icon: null, thumbnails: [] },
+];
+
+// How many tiles each hero-wall row starts with (before the loop-duplication
+// step doubles it). Games are spread round-robin across these slots — e.g.
+// 3 games x 12 slots = 4 tiles per game, evenly separated, not clumped.
+const TILES_PER_ROW = 12;
+
+// Hero stat counters
+const HERO_STATS = [
+  { value: 140000000, suffix: '+', label: 'Play Sessions' },
+  { value: 2000000,   suffix: '+', label: 'Group Members' },
+  { value: 15,         suffix: '+', label: 'Live Experiences' },
+];
+
+/* =========================================================================
+   ICONS
+   ========================================================================= */
+const ICONS = {
+  controller: (cls) => `<svg viewBox="-36 -22 72 44" class="${cls}" fill="none" stroke="currentColor" stroke-width="2"><rect x="-30" y="-15" width="60" height="30" rx="14"/><circle cx="16" cy="-2" r="3.5" fill="currentColor" stroke="none"/><circle cx="23" cy="5" r="3.5" fill="currentColor" stroke="none"/><path d="M-22,0 h-10 M-17,-5 v10" stroke-linecap="round"/></svg>`,
+  cube: (cls) => `<svg viewBox="-26 -29 52 58" class="${cls}" fill="none" stroke="currentColor" stroke-width="2"><path d="M0,-25 L22,-12 L22,12 L0,25 L-22,12 L-22,-12 Z"/><path d="M0,-25 L0,0 M22,-12 L0,0 M-22,-12 L0,0"/></svg>`,
+  gem: (cls) => `<svg viewBox="-22 -26 44 52" class="${cls}" fill="none" stroke="currentColor" stroke-width="2"><path d="M0,-22 L18,-6 L11,22 L-11,22 L-18,-6 Z"/><path d="M-18,-6 L18,-6 M0,-22 L0,-6"/></svg>`,
+  tower: (cls) => `<svg viewBox="-18 -22 36 50" class="${cls}" fill="none" stroke="currentColor" stroke-width="2"><rect x="-14" y="10" width="28" height="14"/><rect x="-11" y="-4" width="22" height="14"/><rect x="-8" y="-18" width="16" height="14"/></svg>`,
+  joystick: (cls) => `<svg viewBox="-20 -27 40 46" class="${cls}" fill="none" stroke="currentColor" stroke-width="2"><path d="M0,15 L0,-8" stroke-linecap="round" stroke-width="4"/><circle cy="-14" r="9" fill="currentColor" stroke="none"/><path d="M-16,15 h32" stroke-linecap="round"/></svg>`,
+  coin: (cls) => `<svg viewBox="-24 -24 48 48" class="${cls}" fill="none" stroke="currentColor" stroke-width="2"><circle r="20"/><circle r="12"/><circle r="2.5" fill="currentColor" stroke="none"/></svg>`,
+  chat: (cls) => `<svg viewBox="-24 -18 48 44" class="${cls}" fill="none" stroke="currentColor" stroke-width="2"><rect x="-20" y="-14" width="40" height="26" rx="9"/><path d="M-8,12 L-1,12 L-5,22 Z" fill="currentColor" stroke="none"/></svg>`,
+  sparkle: (cls) => `<svg viewBox="-26 -26 52 52" class="${cls}" fill="none" stroke="currentColor" stroke-width="2"><path d="M0,-22 L5,-5 L22,0 L5,5 L0,22 L-5,5 L-22,0 L-5,-5 Z" fill="currentColor" stroke="none"/></svg>`,
+};
+
+const MICRO_ICONS = {
+  playing: `<svg viewBox="0 0 20 20" class="h-3.5 w-3.5" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="10" cy="6.5" r="3.2"/><path d="M4 17c0-3.5 2.7-6 6-6s6 2.5 6 6" stroke-linecap="round"/></svg>`,
+  peak: `<svg viewBox="0 0 20 20" class="h-3.5 w-3.5" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 15l4.5-8 3.5 5 2.5-3.5L17 15" stroke-linecap="round" stroke-linejoin="round"/></svg>`,
+  visits: `<svg viewBox="0 0 20 20" class="h-3.5 w-3.5" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M2 10s3-5.5 8-5.5 8 5.5 8 5.5-3 5.5-8 5.5-8-5.5-8-5.5Z"/><circle cx="10" cy="10" r="2.3"/></svg>`,
+};
+
+/* =========================================================================
+   FORMAT HELPERS
+   ========================================================================= */
+function formatStatNumber(value) {
+  if (value >= 1_000_000) {
+    const n = value / 1_000_000;
+    return (Number.isInteger(n) ? n : n.toFixed(1)) + 'M';
+  }
+  if (value >= 1_000) {
+    const n = value / 1_000;
+    return (Number.isInteger(n) ? n : n.toFixed(1)) + 'K';
+  }
+  return Math.round(value).toString();
+}
+
+/* =========================================================================
+   PEAK PERSISTENCE — localStorage, per browser. Roblox has no public
+   endpoint for a rolling peak, so this tracks the highest CCU this specific
+   browser has ever observed for each game (and the studio total). It's not
+   a true global peak across every visitor — just an honest, zero-backend
+   approximation that improves the more the page gets visited/left open.
+   ========================================================================= */
+function trackPeak(key, currentValue) {
+  const storageKey = `wavesstudio_peak_${key}`;
+  try {
+    const stored = Number(localStorage.getItem(storageKey)) || 0;
+    const peak = Math.max(stored, currentValue);
+    localStorage.setItem(storageKey, String(peak));
+    return peak;
+  } catch (err) {
+    return currentValue; // localStorage unavailable (private browsing, etc.)
+  }
+}
+
+/* =========================================================================
+   ROBLOX DATA — fetched directly from the browser via roproxy.com, a free
+   community-run CORS-enabled mirror of Roblox's own APIs. games.roblox.com
+   / apis.roblox.com / thumbnails.roblox.com don't send CORS headers, so a
+   fetch() straight from a browser gets blocked; roproxy mirrors the exact
+   same endpoints WITH CORS allowed, so no backend/proxy of your own is
+   needed. It's an unofficial third-party service (not run by Roblox) — if
+   it's ever down or rate-limits you, FALLBACK_GAMES above keeps the page
+   working regardless.
+   ========================================================================= */
+async function placeIdToUniverseId(placeId) {
+  const res = await fetch(`https://apis.roproxy.com/universes/v1/places/${placeId}/universe`);
+  if (!res.ok) throw new Error(`universe lookup failed for place ${placeId}`);
+  const data = await res.json();
+  return data.universeId;
+}
+
+async function fetchGamesData(universeIds) {
+  if (!universeIds.length) return [];
+  const res = await fetch(`https://games.roproxy.com/v1/games?universeIds=${universeIds.join(',')}`);
+  if (!res.ok) throw new Error('games lookup failed');
+  const data = await res.json();
+  return data.data; // [{ id, name, playing, visits, ... }, ...]
+}
+
+async function fetchIconsBatch(universeIds) {
+  if (!universeIds.length) return {};
+  const res = await fetch(`https://thumbnails.roproxy.com/v1/games/icons?universeIds=${universeIds.join(',')}&size=512x512&format=Png&isCircular=false`);
+  if (!res.ok) return {};
+  const data = await res.json();
+  const map = {};
+  (data.data || []).forEach((e) => { if (e.state === 'Completed') map[e.targetId] = e.imageUrl; });
+  return map;
+}
+
+async function fetchThumbnailsBatch(universeIds, countPerUniverse = 4) {
+  if (!universeIds.length) return {};
+  const res = await fetch(`https://thumbnails.roproxy.com/v1/games/multiget/thumbnails?universeIds=${universeIds.join(',')}&countPerUniverse=${countPerUniverse}&defaults=true&size=768x432&format=Png&isCircular=false`);
+  if (!res.ok) return {};
+  const data = await res.json();
+  const map = {};
+  (data.data || []).forEach((entry) => {
+    map[entry.universeId] = (entry.thumbnails || [])
+      .filter((t) => t.state === 'Completed' && t.imageUrl)
+      .map((t) => t.imageUrl);
+  });
+  return map;
+}
+
+async function loadAllGames() {
+  try {
+    const resolved = await Promise.all(GAME_PLACE_IDS.map(async (placeId) => {
+      try {
+        return { placeId, universeId: await placeIdToUniverseId(placeId) };
+      } catch (err) {
+        console.error(`Failed to resolve universe for place ${placeId}:`, err);
+        return { placeId, universeId: null };
+      }
+    }));
+    const validIds = resolved.filter((r) => r.universeId).map((r) => r.universeId);
+
+    const [gamesData, iconMap, thumbMap] = await Promise.all([
+      fetchGamesData(validIds),
+      fetchIconsBatch(validIds),
+      fetchThumbnailsBatch(validIds),
+    ]);
+    const byUniverse = Object.fromEntries(gamesData.map((g) => [String(g.id), g]));
+
+    const games = resolved
+      .filter((r) => r.universeId)
+      .map(({ placeId, universeId }) => {
+        const g = byUniverse[String(universeId)];
+        const playing = g ? g.playing : 0;
+        return {
+          placeId,
+          name: g ? g.name : `Game ${placeId}`,
+          playing,
+          visits: g ? g.visits : 0,
+          peak: trackPeak(placeId, playing),
+          icon: iconMap[universeId] || null,
+          thumbnails: thumbMap[universeId] || [],
+        };
+      });
+
+    return games.length ? games : FALLBACK_GAMES;
+  } catch (err) {
+    console.warn('Live games fetch failed, showing fallback demo games instead.', err);
+    return FALLBACK_GAMES;
+  }
+}
+
+/* =========================================================================
+   RENDER
+   ========================================================================= */
+function renderHeroStats() {
+  const el = document.getElementById('heroStats');
+  if (!el) return;
+  el.innerHTML = HERO_STATS.map((s) => `
+    <div>
+      <p class="font-display text-3xl sm:text-4xl font-bold tabular-nums">
+        <span class="stat-counter" data-target="${s.value}" data-suffix="${s.suffix}">0</span>
+      </p>
+      <p class="mt-1 text-xs sm:text-sm text-muted">${s.label}</p>
+    </div>
+  `).join('');
+}
+
+// A small fixed rotation used only as a fallback when a game has no real
+// icon yet (proxy not deployed, or that specific Roblox icon lookup failed).
+const ICON_CYCLE = ['controller', 'cube', 'gem', 'tower', 'joystick', 'coin', 'chat', 'sparkle'];
+
+// Shared by the homepage grid and the "View All" modal so a card only has
+// one definition. `tags` (e.g. auto-flagging the single busiest game as
+// "Trending") is computed once in init() and attached to each game object.
+function buildGameCards(games) {
+  return games.map((g, i) => {
+    const thumb = g.thumbnails && g.thumbnails[0];
+    const hasPhoto = Boolean(thumb);
+    const bgStyle = hasPhoto
+      ? `background-image:url('${thumb}'); background-size:cover; background-position:center;`
+      : `background: linear-gradient(155deg,#161616,#050505);`;
+    const cornerBadge = g.icon
+      ? `<img src="${g.icon}" alt="" class="absolute bottom-5 right-5 h-12 w-12 rounded-lg border border-white/25 object-cover shadow-lg" loading="lazy" />`
+      : ICONS[ICON_CYCLE[i % ICON_CYCLE.length]]('absolute bottom-5 right-5 h-10 w-10 text-white/15');
+    const monogram = (g.name || '?').charAt(0).toUpperCase();
+    const tags = g.tags || [];
+    return `
+    <article class="group rounded-2xl border border-line bg-surface overflow-hidden hover:border-white/25 transition-colors duration-300" data-reveal>
+      <div class="relative aspect-[4/3] overflow-hidden" style="${bgStyle}">
+        ${hasPhoto ? '<div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/5 to-transparent"></div>' : `<span class="absolute inset-0 flex items-center justify-center font-display text-[7rem] font-bold text-white/[0.06] select-none">${monogram}</span>`}
+        ${cornerBadge}
+        ${tags.length ? `<div class="absolute top-4 left-4 flex flex-wrap gap-2">${tags.map((t) => `<span class="pill">${t}</span>`).join('')}</div>` : ''}
+      </div>
+      <div class="p-6">
+        <h3 class="font-display font-semibold text-lg mb-3">${g.name}</h3>
+        <div class="flex flex-wrap items-center gap-x-4 gap-y-1.5 text-xs text-muted">
+          <span class="flex items-center gap-1.5">${MICRO_ICONS.playing}${formatStatNumber(g.playing)} Playing</span>
+          <span class="flex items-center gap-1.5">${MICRO_ICONS.peak}${formatStatNumber(g.peak)} Peak</span>
+          <span class="flex items-center gap-1.5">${MICRO_ICONS.visits}${formatStatNumber(g.visits)} Visits</span>
+        </div>
+      </div>
+    </article>`;
+  }).join('');
+}
+
+function renderGamesGrid(games) {
+  const el = document.getElementById('gamesGrid');
+  if (el) el.innerHTML = buildGameCards(games);
+}
+
+function renderLiveActivity(games) {
+  const el = document.getElementById('playtimeChart');
+  if (!el) return;
+
+  const total = games.reduce((sum, g) => sum + (g.playing || 0), 0);
+  const totalPeak = trackPeak('studio_total', total);
+  const maxPlaying = Math.max(1, ...games.map((g) => g.playing || 0));
+
+  const rows = [...games]
+    .sort((a, b) => b.playing - a.playing)
+    .map((g) => {
+      const pct = Math.round((g.playing / maxPlaying) * 100);
+      return `
+        <div class="flex items-center gap-4 py-3 border-b border-line last:border-0">
+          <span class="w-28 sm:w-40 flex-shrink-0 truncate text-sm font-medium">${g.name}</span>
+          <div class="flex-1 h-2 rounded-full bg-white/5 overflow-hidden">
+            <div class="h-full bg-white/70 rounded-full transition-all duration-700" style="width:${pct}%"></div>
+          </div>
+          <span class="w-16 flex-shrink-0 text-right text-sm tabular-nums text-white">${formatStatNumber(g.playing)}</span>
+          <span class="w-20 flex-shrink-0 text-right text-xs tabular-nums text-muted">pk ${formatStatNumber(g.peak)}</span>
+        </div>`;
+    }).join('');
+
+  el.innerHTML = `
+    <div class="flex items-start justify-between flex-wrap gap-6 mb-8">
+      <div>
+        <p class="flex items-center gap-2 text-xs tracking-[0.25em] uppercase text-muted font-medium mb-3 font-display">
+          <span class="h-1.5 w-1.5 rounded-full bg-white inline-block animate-pulse"></span> Live Activity
+        </p>
+        <h3 class="font-display font-semibold text-2xl">Concurrent Players — Right Now</h3>
+      </div>
+      <div class="flex items-center gap-8">
+        <div class="text-right">
+          <p class="font-display text-2xl font-bold tabular-nums">${formatStatNumber(total)}</p>
+          <p class="text-xs text-muted mt-1">Live Now</p>
+        </div>
+        <div class="text-right">
+          <p class="font-display text-2xl font-bold tabular-nums">${formatStatNumber(totalPeak)}</p>
+          <p class="text-xs text-muted mt-1">Peak Recorded</p>
+        </div>
+      </div>
+    </div>
+    <div>${rows}</div>
+    <p class="mt-6 text-[11px] text-muted">Peak is the highest count recorded on this device — refreshes automatically every 45s while this page is open.</p>
+  `;
+}
+
+function wallTileMarkup(game, slotIndex) {
+  const thumb = game && game.thumbnails && game.thumbnails[0];
+  if (thumb) {
+    return `<div class="carousel-item"><div class="wall-tile wall-tile--photo" style="background-image:url('${thumb}')"></div></div>`;
+  }
+  // No live thumbnail for this slot (proxy not configured, or the fetch
+  // failed) — fall back to a monogram (from the real name when we have
+  // one) over a cycling icon, same visual language as before.
+  const monogram = game && game.name ? game.name.charAt(0).toUpperCase() : '';
+  const icon = ICON_CYCLE[slotIndex % ICON_CYCLE.length];
+  return `
+    <div class="carousel-item">
+      <div class="wall-tile">
+        ${monogram ? `<span class="wall-tile-mono">${monogram}</span>` : ''}
+        ${ICONS[icon]('wall-tile-icon')}
+      </div>
+    </div>`;
+}
+
+// Fills TILES_PER_ROW slots by cycling through `games`, starting at a
+// different offset per row so repeated games don't line up vertically —
+// with 1 game every slot is that game; with N games each shows up
+// TILES_PER_ROW/N times, spread evenly instead of clumped together.
+function buildWallRow(games, offset) {
+  if (!games.length) return '';
+  return Array.from({ length: TILES_PER_ROW }, (_, i) => games[(i + offset) % games.length])
+    .map((game, i) => wallTileMarkup(game, i))
+    .join('');
+}
+
+function renderHeroWall(games) {
+  document.querySelectorAll('.hero-wall-track').forEach((track, i) => {
+    track.innerHTML = buildWallRow(games, i);
+    track.dataset.cloned = 'false'; // allow initInfiniteCarousel to (re-)clone this fresh content
+  });
+}
+
+/* =========================================================================
+   INFINITE CAROUSEL — generic: duplicates .carousel-track children once so
+   the loop has no seam, then sets a duration that keeps px/s speed constant.
+   ========================================================================= */
+function initInfiniteCarousel(containerSelector) {
+  document.querySelectorAll(containerSelector).forEach((container) => {
+    const track = container.querySelector('.carousel-track');
+    if (!track || track.dataset.cloned === 'true' || track.children.length === 0) return;
+
+    Array.from(track.children).forEach((child) => {
+      const clone = child.cloneNode(true);
+      clone.setAttribute('aria-hidden', 'true');
+      track.appendChild(clone);
+    });
+    track.dataset.cloned = 'true';
+
+    const pxPerSecond = parseFloat(container.dataset.speed) || 50;
+    const oneSetWidth = track.scrollWidth / 2;
+    track.style.setProperty('--carousel-duration', `${oneSetWidth / pxPerSecond}s`);
+  });
+}
+
+/* =========================================================================
+   INIT
+   ========================================================================= */
+const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+async function refreshLiveData() {
+  const allGames = await loadAllGames();
+  tagAndStore(allGames);
+  const featured = [...allGames].sort((a, b) => b.playing - a.playing).slice(0, 3);
+  renderGamesGrid(featured);
+  renderLiveActivity(allGames);
+}
+
+// Auto-flag the single busiest game as "Trending" — the only tag we can
+// honestly generate without any manual curation — and stash the list for
+// the "View All" modal.
+function tagAndStore(allGames) {
+  if (allGames.length) {
+    const busiest = allGames.reduce((a, b) => (b.playing > a.playing ? b : a));
+    allGames.forEach((g) => { g.tags = g === busiest ? ['Trending'] : []; });
+  }
+  ALL_GAMES = allGames;
+}
+
+async function init() {
+  renderHeroStats();
+
+  const allGames = await loadAllGames();
+  tagAndStore(allGames);
+  const featured = [...allGames].sort((a, b) => b.playing - a.playing).slice(0, 3);
+  renderGamesGrid(featured);
+  renderLiveActivity(allGames);
+
+  // The wall reuses every game's real thumbnail (not just the 3 featured
+  // ones, for more variety) so it renders after the fetch above instead of
+  // showing its own placeholder set first — the hero sits behind a heavy
+  // dark overlay, so the brief wait isn't noticeable. This carousel is
+  // intentionally NOT gated behind prefers-reduced-motion (see the comment
+  // in src/input.css).
+  renderHeroWall(allGames);
+  initInfiniteCarousel('.carousel-container');
+
+  // Keep CCU/visits/peak fresh while the tab stays open, same idea as most
+  // Roblox stat trackers. Doesn't touch the hero wall (that'd restart its
+  // animation) or re-run the reveal/carousel setup — just the numbers.
+  setInterval(refreshLiveData, 45000);
+
+  setupInteractivity();
+}
+
+function setupInteractivity() {
+  // Mobile menu toggle
+  const menuBtn = document.getElementById('menuBtn');
+  const mobileMenu = document.getElementById('mobileMenu');
+  const iconOpen = document.getElementById('iconOpen');
+  const iconClose = document.getElementById('iconClose');
+
+  menuBtn?.addEventListener('click', () => {
+    const isOpen = !mobileMenu.classList.contains('hidden');
+    mobileMenu.classList.toggle('hidden');
+    mobileMenu.classList.toggle('flex');
+    iconOpen.classList.toggle('hidden');
+    iconClose.classList.toggle('hidden');
+    menuBtn.setAttribute('aria-expanded', String(!isOpen));
+  });
+
+  mobileMenu?.querySelectorAll('a').forEach((a) => a.addEventListener('click', () => {
+    mobileMenu.classList.add('hidden');
+    mobileMenu.classList.remove('flex');
+    iconOpen.classList.remove('hidden');
+    iconClose.classList.add('hidden');
+    menuBtn.setAttribute('aria-expanded', 'false');
+  }));
+
+  // "View All" modal — the only way to reach it is this button. It's not a
+  // page section (no nav link, no anchor, not in normal scroll flow), and
+  // it renders one card per game in ALL_GAMES (i.e. one per entry in
+  // GAME_PLACE_IDS near the top of this script), reusing buildGameCards().
+  const gamesModal = document.getElementById('gamesModal');
+  const gamesModalGrid = document.getElementById('gamesModalGrid');
+  let lastFocusedEl = null;
+
+  function openGamesModal() {
+    if (!gamesModal || !gamesModalGrid) return;
+    lastFocusedEl = document.activeElement;
+    gamesModalGrid.innerHTML = buildGameCards(ALL_GAMES);
+    // These cards are injected after the page's scroll-reveal observer
+    // already ran its one-time scan, so they'd otherwise stay stuck at
+    // opacity:0 (data-reveal's default state) forever. Show them immediately.
+    gamesModalGrid.querySelectorAll('[data-reveal]').forEach((el) => el.classList.add('in-view'));
+    gamesModal.classList.remove('hidden');
+    gamesModal.classList.add('flex');
+    document.body.style.overflow = 'hidden';
+    document.getElementById('gamesModalClose')?.focus();
+  }
+
+  function closeGamesModal() {
+    if (!gamesModal) return;
+    gamesModal.classList.add('hidden');
+    gamesModal.classList.remove('flex');
+    document.body.style.overflow = '';
+    lastFocusedEl?.focus();
+  }
+
+  document.getElementById('viewAllBtn')?.addEventListener('click', openGamesModal);
+  document.getElementById('gamesModalClose')?.addEventListener('click', closeGamesModal);
+  document.getElementById('gamesModalBackdrop')?.addEventListener('click', closeGamesModal);
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && gamesModal && !gamesModal.classList.contains('hidden')) closeGamesModal();
+  });
+
+  // Scroll reveal (runs after the render calls above, so injected cards/chart are included)
+  const revealEls = document.querySelectorAll('[data-reveal]');
+  if (!prefersReduced && 'IntersectionObserver' in window) {
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in-view');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15, rootMargin: '0px 0px -60px 0px' });
+    revealEls.forEach((el) => io.observe(el));
+  } else {
+    revealEls.forEach((el) => el.classList.add('in-view'));
+  }
+
+  // Animated stat counters — trigger once when #heroStats scrolls into view.
+  // Intentionally NOT gated behind prefers-reduced-motion: it's a brief,
+  // contained content reveal (not a looping/parallax effect), so it stays on.
+  function animateCounter(el, duration = 2000) {
+    const target = parseFloat(el.dataset.target || '0');
+    const suffix = el.dataset.suffix ?? '+';
+    el.textContent = '0' + suffix; // guarantee a visible starting point, not whatever text was there
+    const start = performance.now();
+
+    function tick(now) {
+      const progress = Math.min((now - start) / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3); // easeOutCubic — decelerates, but stays visible the whole 2s
+      el.textContent = formatStatNumber(target * eased) + suffix;
+      if (progress < 1) requestAnimationFrame(tick);
+      else el.textContent = formatStatNumber(target) + suffix;
+    }
+    requestAnimationFrame(tick);
+  }
+
+  const statsContainer = document.getElementById('heroStats');
+  if (statsContainer) {
+    if ('IntersectionObserver' in window) {
+      const statsIO = new IntersectionObserver((entries, obs) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            // On most screens the hero (and its stats) is fully visible the
+            // instant the page loads, so this observer fires almost
+            // immediately. A short delay makes sure the count is something
+            // you actually get to watch, instead of finishing before you've
+            // even looked at it.
+            setTimeout(() => {
+              statsContainer.querySelectorAll('.stat-counter').forEach((c) => animateCounter(c));
+            }, 350);
+            obs.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.4 });
+      statsIO.observe(statsContainer);
+    } else {
+      statsContainer.querySelectorAll('.stat-counter').forEach((c) => {
+        c.textContent = formatStatNumber(parseFloat(c.dataset.target || '0')) + (c.dataset.suffix ?? '+');
+      });
+    }
+  }
+
+  // Navbar — smooth, continuous scroll-linked fade (not a hard threshold snap)
+  const header = document.querySelector('header');
+  function updateHeader() {
+    const t = Math.min(window.scrollY / 120, 1); // fully transitioned by 120px
+    header.style.backgroundColor = `rgba(0, 0, 0, ${(0.6 + t * 0.32).toFixed(3)})`;
+    header.style.boxShadow = t > 0.05 ? `0 8px 30px rgba(0, 0, 0, ${(0.35 * t).toFixed(3)})` : 'none';
+  }
+  window.addEventListener('scroll', updateHeader, { passive: true });
+  updateHeader();
+
+  // Scroll cue
+  document.getElementById('scrollCue')?.addEventListener('click', () => {
+    document.getElementById('experiences')?.scrollIntoView({ behavior: 'smooth' });
+  });
+
+  // Contact form — front-end demo only.
+  // Connect this to a form backend (e.g. your own API, Formspree, or EmailJS) to actually receive submissions.
+  const form = document.getElementById('contactForm');
+  const status = document.getElementById('formStatus');
+  form?.addEventListener('submit', (e) => {
+    e.preventDefault();
+    if (!form.checkValidity()) {
+      form.reportValidity();
+      return;
+    }
+    const btn = form.querySelector('button[type="submit"]');
+    const originalHTML = btn.innerHTML;
+    btn.disabled = true;
+    btn.innerHTML = 'Sending…';
+    setTimeout(() => {
+      status.textContent = "Thanks — your message has been received. We'll get back to you shortly.";
+      form.reset();
+      btn.disabled = false;
+      btn.innerHTML = originalHTML;
+    }, 900);
+  });
+
+  /* =========================================================================
+     SMOOTH GLOBAL SCROLL — subtle inertia on mouse-wheel input only.
+     Keyboard (Page Down / arrows) and touch scrolling stay 100% native.
+     The wheel still fully drives the target position — this only eases how
+     the page catches up to it, it doesn't take over or auto-scroll on its own.
+     ========================================================================= */
+  if (!prefersReduced && !window.matchMedia('(pointer: coarse)').matches) {
+    let current = window.scrollY;
+    let target = window.scrollY;
+    let ticking = false;
+    const ease = 0.1; // lower = smoother/slower catch-up, higher = snappier
+
+    function onWheel(e) {
+      if (e.ctrlKey) return; // let pinch-zoom behave natively
+      if (!ticking) {
+        current = window.scrollY;
+        target = window.scrollY;
+      }
+      target += e.deltaY;
+      target = Math.max(0, Math.min(target, document.documentElement.scrollHeight - window.innerHeight));
+      e.preventDefault();
+      if (!ticking) {
+        ticking = true;
+        requestAnimationFrame(renderScroll);
+      }
+    }
+
+    function renderScroll() {
+      current += (target - current) * ease;
+      if (Math.abs(target - current) < 0.5) current = target;
+      // behavior:'instant' matters here — the page has `scroll-behavior: smooth`
+      // (html.scroll-smooth) for anchor-link clicks, and window.scrollTo(x, y)
+      // still obeys that CSS property. Without forcing 'instant', the browser's
+      // own smooth-scroll animation was fighting this rAF loop every frame,
+      // which is why the wheel easing wasn't perceptible before.
+      window.scrollTo({ top: current, left: 0, behavior: 'instant' });
+      updateHeader();
+      if (current !== target) {
+        requestAnimationFrame(renderScroll);
+      } else {
+        ticking = false;
+      }
+    }
+
+    window.addEventListener('wheel', onWheel, { passive: false });
+    window.addEventListener('resize', () => {
+      current = window.scrollY;
+      target = window.scrollY;
+    });
+  }
+}
+
+init();
+</script>
+</body>
+</html>
