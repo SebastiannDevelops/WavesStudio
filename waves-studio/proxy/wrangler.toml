@@ -1,0 +1,14 @@
+name = "waves-studio-proxy"
+main = "worker.js"
+compatibility_date = "2026-01-01"
+
+# Created with: wrangler kv namespace create PLAYTIME
+# Paste the "id" it prints below.
+kv_namespaces = [
+  { binding = "PLAYTIME", id = "REPLACE_WITH_YOUR_KV_NAMESPACE_ID" }
+]
+
+# Polls Roblox every 10 minutes to accumulate today's playtime sample.
+# Adjust the frequency to taste — more samples = a smoother chart line.
+[triggers]
+crons = ["*/10 * * * *"]
