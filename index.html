@@ -27,7 +27,7 @@
   <div class="max-w-8xl mx-auto px-6 lg:px-10 h-20 flex items-center justify-between">
     <a href="#top" class="flex items-center gap-3 hover:opacity-80 transition-opacity">
       <img src="logo.png" alt="Waves Studio Logo" class="h-7 w-auto object-contain" />
-      <span class="font-display font-semibold tracking-tight text-lg">Waves Studio</span>
+      <span class="font-display font-semibold tracking-tight text-lg">Test Studio</span>
     </a>
 
     <nav class="hidden md:flex items-center gap-10" aria-label="Primary">
@@ -381,40 +381,43 @@
 
 <script>
 /* =========================================================================
-   GAMES — the ONLY place your games are defined. Add or remove a Roblox
-   place ID here; name, live CCU, visits, icon, and thumbnail are all
-   resolved automatically (see the ROBLOX DATA section below) — no backend
-   needed at all, everything fetches straight from the browser via
-   roproxy.com. Nothing else to edit or deploy.
+   GAMES — the ONLY thing you ever type here is the Roblox place ID. That's
+   it. Name, live CCU, visits, icon, and thumbnail are ALL pulled
+   automatically from that one ID (see loadAllGames() + the ROBLOX DATA
+   section below) — you never fill those in by hand, and clicking a card
+   sends the visitor straight to that game's real Roblox page.
    ========================================================================= */
 const GAME_PLACE_IDS = [
-  126835268440546, // replace with your real place IDs
-  
+  126884695634, // replace with your real place IDs — this is genuinely the only edit needed
 ];
 
 // Populated once init() resolves; the "View All" modal reads from this
 // instead of re-fetching, since the homepage grid already loaded it.
 let ALL_GAMES = [];
 
-// Used only if roproxy is unreachable or every place ID fails to resolve,
-// so the page never renders empty.
+// SAFETY NET ONLY — you don't maintain this. It's what renders if roproxy
+// is unreachable or every ID above fails to resolve (e.g. no internet),
+// so the page shows *something* instead of an empty page. Under normal
+// conditions this array is never used.
 const FALLBACK_GAMES = [
   { name: 'Slime Tower Tycoon', playing: 18000, visits: 42000000, peak: 24500, icon: null, thumbnails: [] },
   { name: 'Mega Mall Tycoon',   playing: 24000, visits: 61000000, peak: 31200, icon: null, thumbnails: [] },
   { name: 'Skyline Rush',       playing: 9000,  visits: 37000000, peak: 15800, icon: null, thumbnails: [] },
 ];
 
+
 // How many tiles each hero-wall row starts with (before the loop-duplication
 // step doubles it). Games are spread round-robin across these slots — e.g.
 // 3 games x 12 slots = 4 tiles per game, evenly separated, not clumped.
 const TILES_PER_ROW = 12;
 
-// Hero stat counters
-const HERO_STATS = [
-  { value: 140000000, suffix: '+', label: 'Play Sessions' },
-  { value: 2000000,   suffix: '+', label: 'Group Members' },
-  { value: 15,         suffix: '+', label: 'Live Experiences' },
-];
+// Optional: your Roblox Group ID, if you have one, to show a REAL live
+// member count in the hero stats. There's no way to auto-discover this
+// from a place/game ID — a group is a separate Roblox entity — so if you
+// want that number to be real (not the placeholder below), this is the
+// one other ID you'd add, same idea as GAME_PLACE_IDS. Find it in your
+// group's URL: roblox.com/groups/XXXXXXXX/your-group-name.
+const GROUP_ID = null; // e.g. 12345678 — leave null to skip and use a placeholder
 
 /* =========================================================================
    ICONS
@@ -564,10 +567,10 @@ async function loadAllGames() {
 /* =========================================================================
    RENDER
    ========================================================================= */
-function renderHeroStats() {
+function renderHeroStats(stats) {
   const el = document.getElementById('heroStats');
   if (!el) return;
-  el.innerHTML = HERO_STATS.map((s) => `
+  el.innerHTML = stats.map((s) => `
     <div>
       <p class="font-display text-3xl sm:text-4xl font-bold tabular-nums">
         <span class="stat-counter" data-target="${s.value}" data-suffix="${s.suffix}">0</span>
@@ -575,6 +578,37 @@ function renderHeroStats() {
       <p class="mt-1 text-xs sm:text-sm text-muted">${s.label}</p>
     </div>
   `).join('');
+}
+
+async function fetchGroupMemberCount(groupId) {
+  const res = await fetch(`https://groups.roproxy.com/v1/groups/${groupId}`);
+  if (!res.ok) throw new Error('group lookup failed');
+  const data = await res.json();
+  return data.memberCount;
+}
+
+// Builds the 3 hero stats from real data: total Visits and the live game
+// count come straight from `allGames` (already fetched via roproxy), and
+// Group Members is fetched live if you set GROUP_ID above — otherwise it
+// falls back to a placeholder since there's no ID to look it up with.
+async function buildHeroStats(allGames) {
+  const totalVisits = allGames.reduce((sum, g) => sum + (g.visits || 0), 0);
+  const liveExperiences = allGames.length;
+
+  let groupMembers = 0; // placeholder, used only if GROUP_ID isn't set
+  if (GROUP_ID) { 3059674,
+    try {
+      groupMembers = await fetchGroupMemberCount(GROUP_ID);
+    } catch (err) {
+      console.warn('Live group member count failed, using placeholder.', err);
+    }
+  }
+
+  return [
+    { value: totalVisits, suffix: '+', label: 'Play Sessions' },
+    { value: groupMembers, suffix: '+', label: 'Group Members' },
+    { value: liveExperiences, suffix: '+', label: 'Live Experiences' },
+  ];
 }
 
 // A small fixed rotation used only as a fallback when a game has no real
@@ -596,8 +630,12 @@ function buildGameCards(games) {
       : ICONS[ICON_CYCLE[i % ICON_CYCLE.length]]('absolute bottom-5 right-5 h-10 w-10 text-white/15');
     const monogram = (g.name || '?').charAt(0).toUpperCase();
     const tags = g.tags || [];
+    // Whole card links out to the real Roblox page when we have a placeId
+    // (i.e. not a FALLBACK_GAMES demo card, which has nowhere real to link).
+    const Tag = g.placeId ? 'a' : 'div';
+    const linkAttrs = g.placeId ? `href="https://www.roblox.com/games/${g.placeId}" target="_blank" rel="noopener noreferrer"` : '';
     return `
-    <article class="group rounded-2xl border border-line bg-surface overflow-hidden hover:border-white/25 transition-colors duration-300" data-reveal>
+    <${Tag} ${linkAttrs} class="group block rounded-2xl border border-line bg-surface overflow-hidden hover:border-white/25 transition-colors duration-300" data-reveal>
       <div class="relative aspect-[4/3] overflow-hidden" style="${bgStyle}">
         ${hasPhoto ? '<div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/5 to-transparent"></div>' : `<span class="absolute inset-0 flex items-center justify-center font-display text-[7rem] font-bold text-white/[0.06] select-none">${monogram}</span>`}
         ${cornerBadge}
@@ -611,7 +649,7 @@ function buildGameCards(games) {
           <span class="flex items-center gap-1.5">${MICRO_ICONS.visits}${formatStatNumber(g.visits)} Visits</span>
         </div>
       </div>
-    </article>`;
+    </${Tag}>`;
   }).join('');
 }
 
@@ -751,10 +789,9 @@ function tagAndStore(allGames) {
 }
 
 async function init() {
-  renderHeroStats();
-
   const allGames = await loadAllGames();
   tagAndStore(allGames);
+  renderHeroStats(await buildHeroStats(allGames));
   const featured = [...allGames].sort((a, b) => b.playing - a.playing).slice(0, 3);
   renderGamesGrid(featured);
   renderLiveActivity(allGames);
