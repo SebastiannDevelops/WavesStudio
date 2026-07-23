@@ -28,7 +28,10 @@
 // Place IDs (the number in a roblox.com/games/<this>/... URL) for every
 // game you want counted toward the studio-wide Playtime Hours chart.
 const GAME_PLACE_IDS = [
-  126884695634, // replace with your real place IDs
+  89461518554279, // replace with your real place IDs
+  77341977937920,
+  114948825018458,
+  
 ];
 
 const corsHeaders = {
