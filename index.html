@@ -27,7 +27,7 @@
   <div class="max-w-8xl mx-auto px-6 lg:px-10 h-20 flex items-center justify-between">
     <a href="#top" class="flex items-center gap-3 hover:opacity-80 transition-opacity">
       <img src="logo.png" alt="Waves Studio Logo" class="h-7 w-auto object-contain" />
-      <span class="font-display font-semibold tracking-tight text-lg">Test Studio</span>
+      <span class="font-display font-semibold tracking-tight text-lg">Waves Studio</span>
     </a>
 
     <nav class="hidden md:flex items-center gap-10" aria-label="Primary">
@@ -388,10 +388,7 @@
    sends the visitor straight to that game's real Roblox page.
    ========================================================================= */
 const GAME_PLACE_IDS = [
-  90593895289249, // replace with your real place IDs — this is genuinely the only edit needed
-  133709253653498,
-  89461518554279,
-  88558462606476,
+  126884695634, // replace with your real place IDs — this is genuinely the only edit needed
 ];
 
 // Populated once init() resolves; the "View All" modal reads from this
@@ -414,13 +411,14 @@ const FALLBACK_GAMES = [
 // 3 games x 12 slots = 4 tiles per game, evenly separated, not clumped.
 const TILES_PER_ROW = 12;
 
-// Optional: your Roblox Group ID, if you have one, to show a REAL live
+// Optional: your Roblox Group ID(s), if you have any, to show a REAL live
 // member count in the hero stats. There's no way to auto-discover this
 // from a place/game ID — a group is a separate Roblox entity — so if you
-// want that number to be real (not the placeholder below), this is the
-// one other ID you'd add, same idea as GAME_PLACE_IDS. Find it in your
-// group's URL: roblox.com/groups/XXXXXXXX/your-group-name.
-const GROUP_ID = null; // e.g. 12345678 — leave null to skip and use a placeholder
+// want that number to be real (not the placeholder below), these are the
+// only other IDs you'd add, same idea as GAME_PLACE_IDS. Got more than one
+// holder group? List them all — their member counts get summed. Find a
+// group's ID in its URL: roblox.com/groups/XXXXXXXX/your-group-name.
+const GROUP_IDS = []; // e.g. [12345678, 87654321] — leave empty to use a placeholder
 
 /* =========================================================================
    ICONS
@@ -600,19 +598,23 @@ async function fetchGroupMemberCount(groupId) {
 
 // Builds the 3 hero stats from real data: total Visits and the live game
 // count come straight from `allGames` (already fetched via roproxy), and
-// Group Members is fetched live if you set GROUP_ID above — otherwise it
-// falls back to a placeholder since there's no ID to look it up with.
+// Group Members is the sum of every group in GROUP_IDS, fetched live —
+// otherwise it falls back to a placeholder since there's no ID to look it
+// up with. One group failing to resolve doesn't drop the others.
 async function buildHeroStats(allGames) {
   const totalVisits = allGames.reduce((sum, g) => sum + (g.visits || 0), 0);
   const liveExperiences = allGames.length;
 
-  let groupMembers = 2000000; // placeholder, used only if GROUP_ID isn't set
-  if (GROUP_ID) {
-    try {
-      groupMembers = await fetchGroupMemberCount(GROUP_ID);
-    } catch (err) {
-      console.warn('Live group member count failed, using placeholder.', err);
-    }
+  let groupMembers = 2000000; // placeholder, used only if GROUP_IDS is empty
+  if (GROUP_IDS.length) {
+    const results = await Promise.allSettled(GROUP_IDS.map(fetchGroupMemberCount));
+    const counts = results
+      .filter((r) => r.status === 'fulfilled')
+      .map((r) => r.value);
+    results
+      .filter((r) => r.status === 'rejected')
+      .forEach((r) => console.warn('Live group member count failed for one group, skipping it.', r.reason));
+    if (counts.length) groupMembers = counts.reduce((sum, n) => sum + n, 0);
   }
 
   return [
