@@ -27,7 +27,7 @@
   <div class="max-w-8xl mx-auto px-6 lg:px-10 h-20 flex items-center justify-between">
     <a href="#top" class="flex items-center gap-3 hover:opacity-80 transition-opacity">
       <img src="logo.png" alt="Waves Studio Logo" class="h-7 w-auto object-contain" />
-      <span class="font-display font-semibold tracking-tight text-lg">Waves Studio</span>
+      <span class="font-display font-semibold tracking-tight text-lg">Test Studio</span>
     </a>
 
     <nav class="hidden md:flex items-center gap-10" aria-label="Primary">
@@ -388,10 +388,10 @@
    sends the visitor straight to that game's real Roblox page.
    ========================================================================= */
 const GAME_PLACE_IDS = [
-  126835268440546, // replace with your real place IDs — this is genuinely the only edit needed
-  136793014779174,
-  76877919232819,
-  606849621,
+  90593895289249, // replace with your real place IDs — this is genuinely the only edit needed
+  133709253653498,
+  89461518554279,
+  88558462606476,
 ];
 
 // Populated once init() resolves; the "View All" modal reads from this
@@ -455,6 +455,14 @@ function formatStatNumber(value) {
     return (Number.isInteger(n) ? n : n.toFixed(1)) + 'K';
   }
   return Math.round(value).toString();
+}
+
+// Game names come from Roblox, not from us — escape before inserting into
+// markup so a name with a quote/angle bracket in it can't break the page.
+function esc(str) {
+  const div = document.createElement('div');
+  div.textContent = str == null ? '' : String(str);
+  return div.innerHTML;
 }
 
 /* =========================================================================
@@ -598,8 +606,8 @@ async function buildHeroStats(allGames) {
   const totalVisits = allGames.reduce((sum, g) => sum + (g.visits || 0), 0);
   const liveExperiences = allGames.length;
 
-  let groupMembers = 0; // placeholder, used only if GROUP_ID isn't set
-  if (GROUP_ID) { 3059674,
+  let groupMembers = 2000000; // placeholder, used only if GROUP_ID isn't set
+  if (GROUP_ID) {
     try {
       groupMembers = await fetchGroupMemberCount(GROUP_ID);
     } catch (err) {
@@ -633,26 +641,26 @@ function buildGameCards(games) {
       : ICONS[ICON_CYCLE[i % ICON_CYCLE.length]]('absolute bottom-5 right-5 h-10 w-10 text-white/15');
     const monogram = (g.name || '?').charAt(0).toUpperCase();
     const tags = g.tags || [];
-    // Whole card links out to the real Roblox page when we have a placeId
-    // (i.e. not a FALLBACK_GAMES demo card, which has nowhere real to link).
-    const Tag = g.placeId ? 'a' : 'div';
-    const linkAttrs = g.placeId ? `href="https://www.roblox.com/games/${g.placeId}" target="_blank" rel="noopener noreferrer"` : '';
+    // Click opens the real Roblox page in a new tab when we have a placeId
+    // (FALLBACK_GAMES demo cards don't, so they just stay non-clickable).
+    const clickable = Boolean(g.placeId);
+    const clickAttr = clickable ? `onclick="window.open('https://www.roblox.com/games/${g.placeId}', '_blank')"` : '';
     return `
-    <${Tag} ${linkAttrs} class="group block rounded-2xl border border-line bg-surface overflow-hidden hover:border-white/25 transition-colors duration-300" data-reveal>
+    <article ${clickAttr} class="group rounded-2xl border border-line bg-surface overflow-hidden hover:border-white/25 transition-colors duration-300${clickable ? ' cursor-pointer' : ''}" data-reveal>
       <div class="relative aspect-[4/3] overflow-hidden" style="${bgStyle}">
         ${hasPhoto ? '<div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/5 to-transparent"></div>' : `<span class="absolute inset-0 flex items-center justify-center font-display text-[7rem] font-bold text-white/[0.06] select-none">${monogram}</span>`}
         ${cornerBadge}
         ${tags.length ? `<div class="absolute top-4 left-4 flex flex-wrap gap-2">${tags.map((t) => `<span class="pill">${t}</span>`).join('')}</div>` : ''}
       </div>
       <div class="p-6">
-        <h3 class="font-display font-semibold text-lg mb-3">${g.name}</h3>
+        <h3 class="font-display font-semibold text-lg mb-3">${esc(g.name)}</h3>
         <div class="flex flex-wrap items-center gap-x-4 gap-y-1.5 text-xs text-muted">
           <span class="flex items-center gap-1.5">${MICRO_ICONS.playing}${formatStatNumber(g.playing)} Playing</span>
           <span class="flex items-center gap-1.5">${MICRO_ICONS.peak}${formatStatNumber(g.peak)} Peak</span>
           <span class="flex items-center gap-1.5">${MICRO_ICONS.visits}${formatStatNumber(g.visits)} Visits</span>
         </div>
       </div>
-    </${Tag}>`;
+    </article>`;
   }).join('');
 }
 
@@ -675,7 +683,7 @@ function renderLiveActivity(games) {
       const pct = Math.round((g.playing / maxPlaying) * 100);
       return `
         <div class="flex items-center gap-4 py-3 border-b border-line last:border-0">
-          <span class="w-28 sm:w-40 flex-shrink-0 truncate text-sm font-medium">${g.name}</span>
+          <span class="w-28 sm:w-40 flex-shrink-0 truncate text-sm font-medium">${esc(g.name)}</span>
           <div class="flex-1 h-2 rounded-full bg-white/5 overflow-hidden">
             <div class="h-full bg-white/70 rounded-full transition-all duration-700" style="width:${pct}%"></div>
           </div>
